@@ -31,8 +31,6 @@ namespace WEBService
 
                 var requestURL = requestString.Substring(0, requestString.IndexOf("HTTP"));
 
-
-             
                 string response = Controller.MainController(requestURL);
 
                 byte[] responseBytes = Encoding.UTF8.GetBytes(response);
