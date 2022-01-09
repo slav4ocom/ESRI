@@ -60,7 +60,8 @@ namespace WEBService
             }
             else
             {
-                html = "<h2> 404 not found</h2>";
+                //html = "<h2> 404 not found</h2>";
+                html = "";
             }
             //var html = Views.Index;
 

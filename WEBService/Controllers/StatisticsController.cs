@@ -12,17 +12,17 @@ namespace WEBService.Controllers
     public class StatisticsController
     {
         static string state = "";
-
-        public StatisticsController()
+        static string[] lines;
+        private string ReturnStateData(string currentState)
         {
-            DecodeOptions();
-            var lines = File.ReadAllLines("../../../../statistics.csv");
-            var result = lines.FirstOrDefault(l => l.Contains(state));
+            var result = "";
+            //var lines = File.ReadAllLines("../../../../statistics.csv");
+            var stateRow = lines.FirstOrDefault(l => l.Contains(currentState));
 
-            if (result != null)
+            if (stateRow != null)
             {
-                var resultState = result.Split(",").First();
-                var resultPopulation = long.Parse(result.Split(",").Last());
+                var resultState = stateRow.Split(",").First();
+                var resultPopulation = long.Parse(stateRow.Split(",").Last());
                 if (format == "json")
                 {
                     var s = new StateResult()
@@ -32,11 +32,11 @@ namespace WEBService.Controllers
                         POPULATION = resultPopulation,
                         error = null
                     };
-                    html = JsonSerializer.Serialize(s, new JsonSerializerOptions() { WriteIndented = true });
+                    result = JsonSerializer.Serialize(s, new JsonSerializerOptions() { WriteIndented = true });
                 }
                 else
                 {
-                    html = $"<b>state name </b>{resultState}<br/><b>population</b> {resultPopulation.ToString()}<br/><b>last updated </b>{lines[0].ToString()}";
+                    result = $"<b>state name </b>{resultState}<br/><b>population</b> {resultPopulation.ToString()}<br/><b>last updated </b>{lines[0].ToString()}";
                 }
             }
             else
@@ -47,13 +47,47 @@ namespace WEBService.Controllers
                     {
                         error = "state not found"
                     };
-                    html = JsonSerializer.Serialize(s, new JsonSerializerOptions() { WriteIndented = true });
+                    result = JsonSerializer.Serialize(s, new JsonSerializerOptions() { WriteIndented = true });
                 }
                 else
                 {
-                    html = "<b>state not found</b>";
+                    result = "<b>state not found</b>";
                 }
             }
+
+            return result;
+        }
+
+
+        private List<string> GetStatesNames()
+        {
+            var result = new List<string>();
+            for (int i = 1; i < lines.Length; i++)
+            {
+                result.Add(lines[i].Split(",").First());
+            }
+            return result;
+        }
+        public StatisticsController()
+        {
+            DecodeOptions();
+
+            lines = File.ReadAllLines("../../../../statistics.csv");
+
+            if (state == "")
+            {
+                //html = "no state specified.";
+                var stateNames = GetStatesNames();
+
+                stateNames
+                    .ForEach(s => html += ReturnStateData(s));
+            }
+            else
+            {
+                html = ReturnStateData(state);
+            }
+
+
         }
 
         private static void DecodeOptions()
