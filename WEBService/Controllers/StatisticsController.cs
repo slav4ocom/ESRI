@@ -19,18 +19,19 @@ namespace WEBService.Controllers
             DecodeOptions();
             var lines = File.ReadAllLines("../../../../statistics.txt");
             var result = lines.FirstOrDefault(l => l.Contains(state));
-            var resultState = result.Split(",").First();
-            var resultPopulation = long.Parse(result.Split(",").Last());
 
             if (result != null)
             {
+                var resultState = result.Split(",").First();
+                var resultPopulation = long.Parse(result.Split(",").Last());
                 if (format == "json")
                 {
                     var s = new StateResult()
                     {
                         lastUpdated = lines[0],
                         STATE_NAME = resultState,
-                        POPULATION = resultPopulation
+                        POPULATION = resultPopulation,
+                        error = null
                     };
                     html = JsonSerializer.Serialize(s, new JsonSerializerOptions() { WriteIndented = true });
                 }
@@ -41,7 +42,18 @@ namespace WEBService.Controllers
             }
             else
             {
-                html = "state not found";
+                if (format == "json")
+                {
+                    var s = new StateResult
+                    {
+                        error = "state not found"
+                    };
+                    html = JsonSerializer.Serialize(s, new JsonSerializerOptions() { WriteIndented = true });
+                }
+                else
+                {
+                    html = "<b>state not found</b>";
+                }
             }
         }
 
