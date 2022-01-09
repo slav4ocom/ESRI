@@ -1,0 +1,36 @@
+9.1.2022 г. 14:22:09
+Alabama 5028316
+Alaska 751317
+Arizona 7332436
+Arkansas 3107082
+California 39648525
+Colorado 5857922
+Connecticut 3620809
+Delaware 1004879
+District of Columbia 706137
+Florida 21587015
+Georgia 10746984
+Hawaii 1437400
+Idaho 1856821
+Illinois 12862980
+Indiana 6808577
+Iowa 3238386
+Kansas 2960432
+Kentucky 4596869
+Louisiana 4792816
+Maine 1377963
+Maryland 6109921
+Massachusetts 6993463
+Michigan 10114954
+Minnesota 5750797
+Mississippi 3056560
+Missouri 6268203
+Montana 1096002
+Nebraska 1978609
+Nevada 3129746
+New Hampshire 1397908
+New Jersey 9100978
+New Mexico 2158077
+New York 19825692
+North Carolina 10736879
+North Dakota 321419
