@@ -36,7 +36,7 @@ namespace WEBService.Controllers
                 }
                 else
                 {
-                    html = result;
+                    html = $"<b>state name </b>{resultState}<br/><b>population</b> {resultPopulation.ToString()}<br/><b>last updated </b>{lines[0].ToString()}";
                 }
             }
             else
