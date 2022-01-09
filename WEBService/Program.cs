@@ -18,6 +18,7 @@ namespace WEBService
                 var NL = "\r\n";
                 var client = tcpListener.AcceptTcpClient();
                 var stream = client.GetStream();
+                
 
                 byte[] buffer = new byte[1024 * 1024];
                 var numberOfBytesReaden =
@@ -28,7 +29,10 @@ namespace WEBService
 
                 Console.WriteLine(requestString);
 
-                string html = $"<h3>ESRI REST API {DateTime.Now}</h3>";
+                var requestURL = requestString.Substring(0,requestString.IndexOf("HTTP"));
+
+                string html = $"<h3>ESRI REST API {DateTime.Now}</h3>" + NL
+                    + requestURL;
 
                 string response = "HTTP/1.1 200 OK" + NL
                     + "Server: slav4o.com " + NL
@@ -39,6 +43,7 @@ namespace WEBService
 
                 byte[] responseBytes = Encoding.UTF8.GetBytes(response);
                 stream.Write(responseBytes);
+                stream.Close();
                 Console.WriteLine(new string('=', 70));
             }
         }
