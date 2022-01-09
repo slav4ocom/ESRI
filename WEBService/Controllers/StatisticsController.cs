@@ -28,6 +28,7 @@ namespace WEBService.Controllers
                 {
                     var s = new StateResult()
                     {
+                        lastUpdated = lines[0],
                         STATE_NAME = resultState,
                         POPULATION = resultPopulation
                     };
