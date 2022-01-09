@@ -11,13 +11,12 @@ namespace WEBService.Controllers
 {
     public class StatisticsController
     {
-        //static string format = "";
         static string state = "";
 
         public StatisticsController()
         {
             DecodeOptions();
-            var lines = File.ReadAllLines("../../../../statistics.txt");
+            var lines = File.ReadAllLines("../../../../statistics.csv");
             var result = lines.FirstOrDefault(l => l.Contains(state));
 
             if (result != null)

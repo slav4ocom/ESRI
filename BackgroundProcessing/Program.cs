@@ -10,7 +10,6 @@ namespace BackgroundProcessing
 {
     class Program
     {
-        //const string serviceString = "http://192.168.0.105/roomdata.json";
         const string serviceString = "https://services.arcgis.com/P3ePLMYs2RVChkJx/ArcGIS/rest/services/USA_Counties/FeatureServer/0/query?where=1%3D1&outFields=population%2C+state_name&returnGeometry=false&f=pjson";
         static void Main(string[] args)
         {
@@ -36,7 +35,7 @@ namespace BackgroundProcessing
             statistics
                 .ForEach(Console.WriteLine);
 
-            var fileName = "../../../../statistics.txt";
+            var fileName = "../../../../statistics.csv";
             
             File.WriteAllLines(fileName, statistics);
 
