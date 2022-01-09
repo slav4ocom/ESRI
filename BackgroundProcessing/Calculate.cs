@@ -53,7 +53,7 @@ namespace BackgroundProcessing
                 var statePopulation = GetStatePopulation(stateData, stateName);
                 var stateRow = new StringBuilder();
                 stateRow.Append(stateName);
-                stateRow.Append(" ");
+                stateRow.Append(",");
                 stateRow.Append(statePopulation.ToString());
 
                 //Console.WriteLine(stateRow);

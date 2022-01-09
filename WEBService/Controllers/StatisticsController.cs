@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using WEBService.Models;
 using static WEBService.Controller;
 
 namespace WEBService.Controllers
@@ -17,9 +19,24 @@ namespace WEBService.Controllers
             DecodeOptions();
             var lines = File.ReadAllLines("../../../../statistics.txt");
             var result = lines.FirstOrDefault(l => l.Contains(state));
+            var resultState = result.Split(",").First();
+            var resultPopulation = long.Parse(result.Split(",").Last());
+
             if (result != null)
             {
-                html = result;
+                if (format == "json")
+                {
+                    var s = new StateResult()
+                    {
+                        STATE_NAME = resultState,
+                        POPULATION = resultPopulation
+                    };
+                    html = JsonSerializer.Serialize(s, new JsonSerializerOptions() { WriteIndented = true });
+                }
+                else
+                {
+                    html = result;
+                }
             }
             else
             {

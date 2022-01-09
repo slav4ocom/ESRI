@@ -8,6 +8,6 @@ namespace WEBService.Models
     {
         public string STATE_NAME { get; set; }
         public long POPULATION { get; set; }
-
+        public string lastUpdated { get; set; }
     }
 }

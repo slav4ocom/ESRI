@@ -36,7 +36,7 @@ namespace BackgroundProcessing
             statistics
                 .ForEach(Console.WriteLine);
 
-            var fileName = "../../../statistics.txt";
+            var fileName = "../../../../statistics.txt";
             
             File.WriteAllLines(fileName, statistics);
 
