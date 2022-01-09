@@ -15,10 +15,10 @@ namespace WEBService
 
             while (true)
             {
-                var NL = "\r\n";
+                const string NL = "\r\n";
                 var client = tcpListener.AcceptTcpClient();
                 var stream = client.GetStream();
-                
+
 
                 byte[] buffer = new byte[1024 * 1024];
                 var numberOfBytesReaden =
@@ -29,17 +29,11 @@ namespace WEBService
 
                 Console.WriteLine(requestString);
 
-                var requestURL = requestString.Substring(0,requestString.IndexOf("HTTP"));
+                var requestURL = requestString.Substring(0, requestString.IndexOf("HTTP"));
 
-                string html = $"<h3>ESRI REST API {DateTime.Now}</h3>" + NL
-                    + requestURL;
 
-                string response = "HTTP/1.1 200 OK" + NL
-                    + "Server: slav4o.com " + NL
-                    + "Content-Type: text/html; charset=utf-8" + NL
-                    + "Content-Length: " + html.Length + NL
-                    + NL
-                    + html + NL;
+             
+                string response = Controller.MainController(requestURL);
 
                 byte[] responseBytes = Encoding.UTF8.GetBytes(response);
                 stream.Write(responseBytes);
