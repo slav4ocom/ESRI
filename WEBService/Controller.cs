@@ -48,6 +48,7 @@ namespace WEBService
                 options = "<b>none</b>";
             }
 
+            content = "";
 
             if (controller == "" || controller == "index.html")
             {
@@ -59,22 +60,26 @@ namespace WEBService
             }
             else
             {
-                //html = "<h2> 404 not found</h2>";
-                content = "";
+                content = "<h2> 404 not found</h2>";
+                //content = "";
+                string responseNotFound = "HTTP/1.1 404 NOT FOUND" + NL
+                      + "Server: slav4o.com " + NL
+                      + NL
+                      + content + NL;
+                return responseNotFound;
             }
-            //var html = Views.Index;
-            
+
             var htmlBytesLength = Encoding.UTF8.GetByteCount(content);
-            string response = "HTTP/1.1 200 OK" + NL
-                + "Server: slav4o.com " + NL
-                + "Content-Type: " + GetContentType() + NL
-                //+ "Content-Type: text/html; charset=utf-8" + NL
-                + "Content-Length: " + htmlBytesLength + NL
-                + NL
-                + content + NL;
 
+            string responseOK = "HTTP/1.1 200 OK" + NL
+               + "Server: slav4o.com " + NL
+               + "Content-Type: " + GetContentType() + NL
+               //+ "Content-Type: text/html; charset=utf-8" + NL
+               + "Content-Length: " + htmlBytesLength + NL
+               + NL
+               + content + NL;
 
-            return response;
+            return responseOK;
         }
 
         private static string GetContentType()
