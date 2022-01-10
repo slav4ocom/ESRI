@@ -10,7 +10,7 @@ namespace WEBService.Controllers
     {
         public IndexController()
         {
-            html = new IndexView().ToString();
+            content = new IndexView().ToString();
         }
     }
 }

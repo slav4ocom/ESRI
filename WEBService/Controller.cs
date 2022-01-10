@@ -19,7 +19,7 @@ namespace WEBService
 
         public static string format = "";
         //static string state = "";
-        public static string html = "";
+        public static string content = "";
         public static string MainController(string requestURL)
         {
             requestURLString = requestURL;
@@ -61,18 +61,18 @@ namespace WEBService
             else
             {
                 //html = "<h2> 404 not found</h2>";
-                html = "";
+                content = "";
             }
             //var html = Views.Index;
             
-            var htmlBytesLength = Encoding.UTF8.GetByteCount(html);
+            var htmlBytesLength = Encoding.UTF8.GetByteCount(content);
             string response = "HTTP/1.1 200 OK" + NL
                 + "Server: slav4o.com " + NL
                 + "Content-Type: " + GetContentType() + NL
                 //+ "Content-Type: text/html; charset=utf-8" + NL
                 + "Content-Length: " + htmlBytesLength + NL
                 + NL
-                + html + NL;
+                + content + NL;
 
 
             return response;

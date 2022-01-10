@@ -80,11 +80,11 @@ namespace WEBService.Controllers
                 var stateNames = GetStatesNames();
 
                 stateNames
-                    .ForEach(s => html += ReturnStateData(s));
+                    .ForEach(s => content += ReturnStateData(s));
             }
             else
             {
-                html = ReturnStateData(state);
+                content = ReturnStateData(state);
             }
 
 
