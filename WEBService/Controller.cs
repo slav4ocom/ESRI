@@ -64,12 +64,13 @@ namespace WEBService
                 html = "";
             }
             //var html = Views.Index;
-
+            
+            var htmlBytesLength = Encoding.UTF8.GetByteCount(html);
             string response = "HTTP/1.1 200 OK" + NL
                 + "Server: slav4o.com " + NL
                 + "Content-Type: " + GetContentType() + NL
                 //+ "Content-Type: text/html; charset=utf-8" + NL
-                + "Content-Length: " + html.Length + NL
+                + "Content-Length: " + htmlBytesLength + NL
                 + NL
                 + html + NL;
 
