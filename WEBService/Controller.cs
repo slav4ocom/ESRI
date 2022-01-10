@@ -49,6 +49,7 @@ namespace WEBService
             }
 
             content = "";
+            format = "";
 
             if (controller == "" || controller == "index.html")
             {
@@ -61,7 +62,7 @@ namespace WEBService
             else
             {
                 content = "<h2> 404 not found</h2>";
-                //content = "";
+
                 string responseNotFound = "HTTP/1.1 404 NOT FOUND" + NL
                       + "Server: slav4o.com " + NL
                       + NL
