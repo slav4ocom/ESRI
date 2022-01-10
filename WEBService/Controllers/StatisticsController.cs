@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 using WEBService.Models;
 using static WEBService.Controller;
 
@@ -32,7 +34,7 @@ namespace WEBService.Controllers
                         POPULATION = resultPopulation,
                         error = null
                     };
-                    result = JsonSerializer.Serialize(s, new JsonSerializerOptions() { WriteIndented = true });
+                    result = JsonSerializer.Serialize(s, new JsonSerializerOptions() { Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),WriteIndented = true });
                 }
                 else
                 {
