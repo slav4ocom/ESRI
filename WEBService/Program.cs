@@ -15,7 +15,7 @@ namespace WEBService
 
             while (true)
             {
-                //try
+                try
                 {
                     const string NL = "\r\n";
                     var client = tcpListener.AcceptTcpClient();
@@ -40,9 +40,9 @@ namespace WEBService
                     stream.Close();
                     Console.WriteLine(new string('=', 70));
                 }
-                //catch (Exception e)
+                catch (Exception e)
                 {
-                //    Console.WriteLine(e);
+                    Console.WriteLine(e);
                 }
             }
         }
